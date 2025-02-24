@@ -1,17 +1,25 @@
-//
-//  DocScannerApp.swift
-//  DocScanner
-//
-//  Created by Jacob McCloud on 2/24/25.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct DocScannerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DocumentList()
         }
+        .modelContainer(for: Document.self)
     }
+}
+
+#Preview {
+    Image(systemName: "document.viewfinder")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .foregroundStyle(.white)
+            .frame(width: 300, height: 300)
+        .padding()
+        .padding()
+        .padding()
+        .padding()
+        .background(Color("Color").gradient)
 }
