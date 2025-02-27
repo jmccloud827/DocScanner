@@ -1,6 +1,11 @@
 import SwiftData
 import SwiftUI
 
+/// A SwiftUI view that displays a list of documents and allows users to scan new documents.
+///
+/// The `DocumentList` view presents a list of scanned documents and provides a toolbar button
+/// to initiate a document scanning process. Users can rename or delete documents from the list,
+/// and they can navigate to a detailed view of each document.
 struct DocumentList: View {
     @Environment(\.modelContext) private var modelContext
     
@@ -50,6 +55,10 @@ struct DocumentList: View {
         }
     }
     
+    /// A nested view that represents a link to a specific document.
+    ///
+    /// The `DocumentLink` view allows users to edit the document's name
+    /// and provides context menu options for renaming or deleting the document.
     struct DocumentLink: View {
         @Environment(\.modelContext) private var modelContext
         
@@ -93,6 +102,7 @@ struct DocumentList: View {
             }
         }
         
+        /// A button for renaming the document.
         private var renameButton: some View {
             Button {
                 focus = true
@@ -101,6 +111,7 @@ struct DocumentList: View {
             }
         }
         
+        /// A button for deleting the document.
         private var deleteButton: some View {
             Button(role: .destructive) {
                 modelContext.delete(document)

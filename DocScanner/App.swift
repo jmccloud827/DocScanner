@@ -11,6 +11,7 @@ struct DocScannerApp: App {
     }
 }
 
+/// App Icon
 #Preview {
     Image(systemName: "document.viewfinder")
         .resizable()

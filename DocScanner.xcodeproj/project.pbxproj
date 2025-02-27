@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		304E1A962D6CA82A00862CED /* DocScannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1A952D6CA82A00862CED /* DocScannerApp.swift */; };
+		304E1A962D6CA82A00862CED /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1A952D6CA82A00862CED /* App.swift */; };
 		304E1A982D6CA82A00862CED /* DocumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1A972D6CA82A00862CED /* DocumentList.swift */; };
 		304E1A9A2D6CA82B00862CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304E1A992D6CA82B00862CED /* Assets.xcassets */; };
-		304E1AA82D6CAA1A00862CED /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1AA72D6CAA1A00862CED /* PDFView.swift */; };
+		304E1AA82D6CAA1A00862CED /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1AA72D6CAA1A00862CED /* PreviewController.swift */; };
 		304E1AAA2D6CAA4100862CED /* DocumentScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */; };
 		304E1AAE2D6CB1DA00862CED /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1AAD2D6CB1DA00862CED /* Document.swift */; };
 		304E1AB02D6CB89500862CED /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1AAF2D6CB89500862CED /* DocumentView.swift */; };
@@ -18,14 +18,13 @@
 
 /* Begin PBXFileReference section */
 		304E1A922D6CA82A00862CED /* DocScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		304E1A952D6CA82A00862CED /* DocScannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScannerApp.swift; sourceTree = "<group>"; };
+		304E1A952D6CA82A00862CED /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		304E1A972D6CA82A00862CED /* DocumentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentList.swift; sourceTree = "<group>"; };
 		304E1A992D6CA82B00862CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		304E1AA72D6CAA1A00862CED /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		304E1AA72D6CAA1A00862CED /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerView.swift; sourceTree = "<group>"; };
 		304E1AAD2D6CB1DA00862CED /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		304E1AAF2D6CB89500862CED /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
-		3056B2F22D6CD3500004AA91 /* DocScanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanner.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,12 +65,11 @@
 		304E1AA32D6CA83600862CED /* DocScanner */ = {
 			isa = PBXGroup;
 			children = (
-				3056B2F22D6CD3500004AA91 /* DocScanner.entitlements */,
-				304E1A952D6CA82A00862CED /* DocScannerApp.swift */,
+				304E1A952D6CA82A00862CED /* App.swift */,
 				304E1A972D6CA82A00862CED /* DocumentList.swift */,
 				304E1AAF2D6CB89500862CED /* DocumentView.swift */,
 				304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */,
-				304E1AA72D6CAA1A00862CED /* PDFView.swift */,
+				304E1AA72D6CAA1A00862CED /* PreviewController.swift */,
 				304E1AAD2D6CB1DA00862CED /* Document.swift */,
 				304E1A992D6CA82B00862CED /* Assets.xcassets */,
 				304E1AA52D6CA84200862CED /* Preview Content */,
@@ -155,11 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				304E1AB02D6CB89500862CED /* DocumentView.swift in Sources */,
-				304E1AA82D6CAA1A00862CED /* PDFView.swift in Sources */,
+				304E1AA82D6CAA1A00862CED /* PreviewController.swift in Sources */,
 				304E1A982D6CA82A00862CED /* DocumentList.swift in Sources */,
 				304E1AAE2D6CB1DA00862CED /* Document.swift in Sources */,
 				304E1AAA2D6CAA4100862CED /* DocumentScannerView.swift in Sources */,
-				304E1A962D6CA82A00862CED /* DocScannerApp.swift in Sources */,
+				304E1A962D6CA82A00862CED /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +288,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DocScanner/DocScanner.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DocScanner/Preview Content\"";
@@ -321,7 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DocScanner/DocScanner.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DocScanner/Preview Content\"";
