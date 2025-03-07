@@ -8,7 +8,7 @@ import SwiftUI
 /// allowing it to be used within collections, uniquely identified, and transferred between applications.
 @Model class Document: Hashable, Identifiable, Transferable {
     /// A unique identifier for the document.
-    var id = UUID()
+    @Attribute(.unique) var id = UUID()
     
     /// The name of the document.
     var name: String

@@ -13,6 +13,7 @@ struct DocumentView: View {
         Group {
             if let pdfDocument = document.pdfDocument {
                 PreviewController(pdfDocument: pdfDocument)
+                    .ignoresSafeArea()
                     .toolbar {
                         if let imageRepresentation = pdfDocument.imageRepresentation {
                             ShareLink(item: document,
@@ -23,7 +24,6 @@ struct DocumentView: View {
                                       preview: SharePreview(document.name))
                         }
                     }
-                    .ignoresSafeArea()
             } else {
                 Text("Failed to load PDF")
             }
