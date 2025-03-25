@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30415C002D93423C006A2135 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 30415BFF2D93423C006A2135 /* sample.pdf */; };
 		304E1A962D6CA82A00862CED /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1A952D6CA82A00862CED /* App.swift */; };
 		304E1A982D6CA82A00862CED /* DocumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304E1A972D6CA82A00862CED /* DocumentList.swift */; };
 		304E1A9A2D6CA82B00862CED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304E1A992D6CA82B00862CED /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30415BFF2D93423C006A2135 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		304E1A922D6CA82A00862CED /* DocScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304E1A952D6CA82A00862CED /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		304E1A972D6CA82A00862CED /* DocumentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentList.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */,
 				304E1AA72D6CAA1A00862CED /* PreviewController.swift */,
 				304E1AAD2D6CB1DA00862CED /* Document.swift */,
+				30415BFF2D93423C006A2135 /* sample.pdf */,
 				304E1A992D6CA82B00862CED /* Assets.xcassets */,
 				304E1AA52D6CA84200862CED /* Preview Content */,
 			);
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				304E1A9A2D6CA82B00862CED /* Assets.xcassets in Resources */,
+				30415C002D93423C006A2135 /* sample.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

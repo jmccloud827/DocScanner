@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import PDFKit
 
 /// A SwiftUI view that displays a list of documents and allows users to scan new documents.
 ///
@@ -14,16 +15,26 @@ struct DocumentList: View {
     @AppStorage("Doc Number") private var docNumber = 1
     @State private var isShowingScanner = false
     @State private var showAlert = false
+    @State private var selected: Document?
+    @Namespace private var namespace
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(scans, id: \.self) { document in
-                    DocumentLink(document: document)
+            ScrollView {
+                LazyVGrid(columns: [.init(), .init(), .init()]) {
+                    ForEach(scans.sorted(by: { $0.dateCreated > $1.dateCreated }), id: \.self) { document in
+                        DocumentLink(document: document, namespace: namespace) { document in
+                            selected = document
+                        }
+                    }
                 }
-            }
-            .navigationDestination(for: Document.self) { document in
-                DocumentView(document: document)
+                .padding()
+                .sheet(item: $selected) { document in
+                    NavigationStack {
+                        DocumentView(document: document)
+                    }
+                        .navigationTransition(.zoom(sourceID: document.id, in: namespace))
+                }
             }
             .toolbar {
                 Button {
@@ -63,36 +74,94 @@ struct DocumentList: View {
         @Environment(\.modelContext) private var modelContext
         
         let document: Document
+        let namespace: Namespace.ID
+        let onSelectDocument: (Document) -> Void
         
         @State private var text = ""
+        @State private var isEditing = false
         @FocusState private var focus: Bool
         
         var body: some View {
-            NavigationLink(value: document) {
-                HStack {
-                    TextField("", text: $text)
-                        .focused($focus)
-                    
-                    Spacer()
-                    
-                    Text(document.dateCreated.formatted(date: .abbreviated, time: .shortened))
+            VStack {
+                Button {
+                    onSelectDocument(document)
+                } label: {
+                    ZStack {
+                        if let uiImage = document.pdfDocument?.imageRepresentation {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .interpolation(.high)
+                                .aspectRatio(contentMode: .fit)
+                                .clipShape(RoundedRectangle(cornerSize: .init(width: 5, height: 5), style: .continuous))
+                        } else {
+                            Image(systemName: "document")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding()
+                                .padding()
+                                .foregroundStyle(.gray)
+                        }
+                        
+                        RoundedRectangle(cornerSize: .init(width: 5, height: 5), style: .continuous)
+                            .stroke(lineWidth: 0.5)
+                            .fill(.black.opacity(0.5))
+                    }
+                    .frame(maxWidth: 100, maxHeight: 150)
+                    .matchedTransitionSource(id: document.id, in: namespace)
                 }
+                .contextMenu {
+                    if let imageRepresentation = document.pdfDocument?.imageRepresentation {
+                        ShareLink(item: document,
+                                  preview: SharePreview(document.name,
+                                                        image: Image(uiImage: imageRepresentation)))
+                    } else {
+                        ShareLink(item: document,
+                                  preview: SharePreview(document.name))
+                    }
+                    
+                    Button {
+                        isEditing = true
+                        focus = true
+                    } label: {
+                        Label("Rename", systemImage: "pencil")
+                    }
+                    
+                    Button(role: .destructive) {
+                        modelContext.delete(document)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
+                
+                if isEditing {
+                    TextField(document.name, text: $text)
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.center)
+                        .focused($focus)
+                } else {
+                    Text(document.name)
+                        .onTapGesture {
+                            isEditing = true
+                            focus = true
+                        }
+                }
+                
+                Text(document.dateCreated.formatted(date: .numeric, time: .omitted))
+                    .foregroundStyle(.gray)
+                    .font(.caption)
+                
+                Text(document.document.count.formatted(.byteCount(style: .memory)).uppercased())
+                    .foregroundStyle(.gray)
+                    .font(.caption)
             }
             .submitLabel(.done)
-            .contextMenu {
-                renameButton
-                
-                deleteButton
-            }
-            .swipeActions {
-                deleteButton
-                
-                renameButton
-                    .tint(.green)
-            }
             .onChange(of: focus) {
-                if !focus && !text.isEmpty {
-                    document.name = text
+                if !focus {
+                    if !text.isEmpty {
+                        document.name = text
+                    }
+                    
+                    isEditing = false
                 } else {
                     text = document.name
                 }
@@ -101,27 +170,20 @@ struct DocumentList: View {
                 text = document.name
             }
         }
-        
-        /// A button for renaming the document.
-        private var renameButton: some View {
-            Button {
-                focus = true
-            } label: {
-                Label("Rename", systemImage: "pencil")
-            }
-        }
-        
-        /// A button for deleting the document.
-        private var deleteButton: some View {
-            Button(role: .destructive) {
-                modelContext.delete(document)
-            } label: {
-                Label("Delete", systemImage: "trash")
-            }
-        }
     }
 }
 
 #Preview {
-    DocumentList()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Document.self, configurations: config)
+    
+    let pdf = PDFDocument(url: Bundle.main.url(forResource: "sample", withExtension: "pdf")!)!
+    
+    container.mainContext.insert(Document(name: "Test", dateCreated: Date.now, document: pdf)!)
+    container.mainContext.insert(Document(name: "Test 2", dateCreated: Date.distantFuture, document: pdf)!)
+    container.mainContext.insert(Document(name: "Test 3", dateCreated: Date.distantPast, document: pdf)!)
+    container.mainContext.insert(Document(name: "Test 4", dateCreated: Date.now, data: Data()))
+    
+    return DocumentList()
+        .modelContainer(container)
 }
