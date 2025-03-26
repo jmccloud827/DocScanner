@@ -1,6 +1,6 @@
+import PDFKit
 import SwiftData
 import SwiftUI
-import PDFKit
 
 /// A SwiftUI view that displays a list of documents and allows users to scan new documents.
 ///
@@ -33,7 +33,7 @@ struct DocumentList: View {
                     NavigationStack {
                         DocumentView(document: document)
                     }
-                        .navigationTransition(.zoom(sourceID: document.id, in: namespace))
+                    .navigationTransition(.zoom(sourceID: document.id, in: namespace))
                 }
             }
             .toolbar {

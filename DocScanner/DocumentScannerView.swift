@@ -37,7 +37,7 @@ public struct DocumentScannerView: UIViewControllerRepresentable {
     ///
     /// The `Coordinator` manages the interactions between the `DocumentScannerView` and the
     /// `VNDocumentCameraViewController`, handling delegate callbacks for document scanning.
-    public class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
+    public class Coordinator: NSObject, @preconcurrency VNDocumentCameraViewControllerDelegate {
         var parent: DocumentScannerView
         
         /// Initializes a new instance of `Coordinator` with the specified parent `DocumentScannerView`.
@@ -52,7 +52,7 @@ public struct DocumentScannerView: UIViewControllerRepresentable {
         /// - Parameters:
         ///   - controller: The `VNDocumentCameraViewController` that finished scanning.
         ///   - scan: The result of the scan containing the scanned document pages.
-        public func documentCameraViewController(_: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        @MainActor public func documentCameraViewController(_: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             let images = (0 ..< scan.pageCount).map(scan.imageOfPage(at:))
             let pdf = PDFDocument()
             for i in 0 ..< images.count {
@@ -68,7 +68,7 @@ public struct DocumentScannerView: UIViewControllerRepresentable {
         /// Called when the document scanning is canceled by the user.
         ///
         /// - Parameter controller: The `VNDocumentCameraViewController` that was canceled.
-        public func documentCameraViewControllerDidCancel(_: VNDocumentCameraViewController) {
+        @MainActor public func documentCameraViewControllerDidCancel(_: VNDocumentCameraViewController) {
             parent.dismiss()
         }
         
@@ -77,7 +77,7 @@ public struct DocumentScannerView: UIViewControllerRepresentable {
         /// - Parameters:
         ///   - controller: The `VNDocumentCameraViewController` that encountered an error.
         ///   - error: The error that occurred during scanning.
-        public func documentCameraViewController(_: VNDocumentCameraViewController, didFailWithError error: Error) {
+        @MainActor public func documentCameraViewController(_: VNDocumentCameraViewController, didFailWithError error: Error) {
             print("Error:", error)
             parent.onCompletion(.failure(error))
             parent.dismiss()
