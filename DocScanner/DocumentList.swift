@@ -10,7 +10,7 @@ import SwiftUI
 struct DocumentList: View {
     @Environment(\.modelContext) private var modelContext
     
-    @Query private var scans: [Document]
+    @Query(sort: \Document.dateCreated, order: .reverse) private var scans: [Document]
     
     @AppStorage("Doc Number") private var docNumber = 1
     @State private var isShowingScanner = false
@@ -21,8 +21,8 @@ struct DocumentList: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: [.init(), .init(), .init()]) {
-                    ForEach(scans.sorted(by: { $0.dateCreated > $1.dateCreated }), id: \.self) { document in
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+                    ForEach(scans, id: \.self) { document in
                         DocumentLink(document: document, namespace: namespace) { document in
                             selected = document
                         }
@@ -86,7 +86,7 @@ struct DocumentList: View {
                 Button {
                     onSelectDocument(document)
                 } label: {
-                    ZStack {
+                    Group {
                         if let uiImage = document.pdfDocument?.imageRepresentation {
                             Image(uiImage: uiImage)
                                 .resizable()
@@ -100,38 +100,45 @@ struct DocumentList: View {
                                 .padding()
                                 .padding()
                                 .foregroundStyle(.gray)
+                                .frame(width: 100, height: 150)
                         }
-                        
+                    }
+                    .matchedTransitionSource(id: document.id, in: namespace)
+                    .background {
+                        RoundedRectangle(cornerSize: .init(width: 5, height: 5), style: .continuous)
+                            .fill(Color(.secondarySystemGroupedBackground))
+                    }
+                    .overlay {
                         RoundedRectangle(cornerSize: .init(width: 5, height: 5), style: .continuous)
                             .stroke(lineWidth: 0.5)
                             .fill(.black.opacity(0.5))
                     }
-                    .frame(maxWidth: 100, maxHeight: 150)
-                    .matchedTransitionSource(id: document.id, in: namespace)
+                    .contextMenu {
+                        if let imageRepresentation = document.pdfDocument?.imageRepresentation {
+                            ShareLink(item: document,
+                                      preview: SharePreview(document.name,
+                                                            image: Image(uiImage: imageRepresentation)))
+                        } else {
+                            ShareLink(item: document,
+                                      preview: SharePreview(document.name))
+                        }
+                        
+                        Button {
+                            isEditing = true
+                            focus = true
+                        } label: {
+                            Label("Rename", systemImage: "pencil")
+                        }
+                        
+                        Button(role: .destructive) {
+                            modelContext.delete(document)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                    .frame(maxWidth: 100, maxHeight: 150, alignment: .bottom)
                 }
-                .contextMenu {
-                    if let imageRepresentation = document.pdfDocument?.imageRepresentation {
-                        ShareLink(item: document,
-                                  preview: SharePreview(document.name,
-                                                        image: Image(uiImage: imageRepresentation)))
-                    } else {
-                        ShareLink(item: document,
-                                  preview: SharePreview(document.name))
-                    }
-                    
-                    Button {
-                        isEditing = true
-                        focus = true
-                    } label: {
-                        Label("Rename", systemImage: "pencil")
-                    }
-                    
-                    Button(role: .destructive) {
-                        modelContext.delete(document)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
+                .frame(width: 100, height: 150)
                 
                 if isEditing {
                     TextField(document.name, text: $text)
@@ -140,6 +147,7 @@ struct DocumentList: View {
                         .focused($focus)
                 } else {
                     Text(document.name)
+                        .multilineTextAlignment(.center)
                         .onTapGesture {
                             isEditing = true
                             focus = true
@@ -153,6 +161,8 @@ struct DocumentList: View {
                 Text(document.document.count.formatted(.byteCount(style: .memory)).uppercased())
                     .foregroundStyle(.gray)
                     .font(.caption)
+                
+                Spacer()
             }
             .submitLabel(.done)
             .onChange(of: focus) {
