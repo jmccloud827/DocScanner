@@ -1,4 +1,5 @@
 import SwiftData
+import PDFKit
 import SwiftUI
 
 /// A SwiftUI view that displays a PDF document.
@@ -15,14 +16,7 @@ struct DocumentView: View {
                 PreviewController(pdfDocument: pdfDocument)
                     .ignoresSafeArea()
                     .toolbar {
-                        if let imageRepresentation = pdfDocument.imageRepresentation {
-                            ShareLink(item: document,
-                                      preview: SharePreview(document.name,
-                                                            image: Image(uiImage: imageRepresentation)))
-                        } else {
-                            ShareLink(item: document,
-                                      preview: SharePreview(document.name))
-                        }
+                        shareButton(pdfDocument: pdfDocument)
                     }
             } else {
                 Text("Failed to load PDF")
@@ -30,5 +24,16 @@ struct DocumentView: View {
         }
         .navigationTitle(document.name)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    @ViewBuilder private func shareButton(pdfDocument: PDFDocument) -> some View {
+        if let imageRepresentation = pdfDocument.imageRepresentation {
+            ShareLink(item: document,
+                      preview: SharePreview(document.name,
+                                            image: Image(uiImage: imageRepresentation)))
+        } else {
+            ShareLink(item: document,
+                      preview: SharePreview(document.name))
+        }
     }
 }
