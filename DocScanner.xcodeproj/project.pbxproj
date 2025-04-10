@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		30415BFF2D93423C006A2135 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
-		304E1A922D6CA82A00862CED /* DocScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		304E1A922D6CA82A00862CED /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		304E1A952D6CA82A00862CED /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		304E1A972D6CA82A00862CED /* DocumentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentList.swift; sourceTree = "<group>"; };
 		304E1A992D6CA82B00862CED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		304E1A892D6CA82A00862CED = {
 			isa = PBXGroup;
 			children = (
-				304E1AA32D6CA83600862CED /* DocScanner */,
+				304E1AA32D6CA83600862CED /* App */,
 				304E1A932D6CA82A00862CED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,12 +59,12 @@
 		304E1A932D6CA82A00862CED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				304E1A922D6CA82A00862CED /* DocScanner.app */,
+				304E1A922D6CA82A00862CED /* App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		304E1AA32D6CA83600862CED /* DocScanner */ = {
+		304E1AA32D6CA83600862CED /* App */ = {
 			isa = PBXGroup;
 			children = (
 				304E1A952D6CA82A00862CED /* App.swift */,
@@ -77,15 +77,15 @@
 				304E1A992D6CA82B00862CED /* Assets.xcassets */,
 				304E1AA52D6CA84200862CED /* Preview Content */,
 			);
-			path = DocScanner;
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		304E1A912D6CA82A00862CED /* DocScanner */ = {
+		304E1A912D6CA82A00862CED /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 304E1AA02D6CA82B00862CED /* Build configuration list for PBXNativeTarget "DocScanner" */;
+			buildConfigurationList = 304E1AA02D6CA82B00862CED /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				304E1A8E2D6CA82A00862CED /* Sources */,
 				304E1A8F2D6CA82A00862CED /* Frameworks */,
@@ -98,11 +98,11 @@
 			fileSystemSynchronizedGroups = (
 				304E1AA52D6CA84200862CED /* Preview Content */,
 			);
-			name = DocScanner;
+			name = App;
 			packageProductDependencies = (
 			);
 			productName = DocScanner;
-			productReference = 304E1A922D6CA82A00862CED /* DocScanner.app */;
+			productReference = 304E1A922D6CA82A00862CED /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -134,7 +134,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				304E1A912D6CA82A00862CED /* DocScanner */,
+				304E1A912D6CA82A00862CED /* App */,
 			);
 		};
 /* End PBXProject section */
@@ -295,7 +295,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DocScanner/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = JY83NY58JG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -326,7 +326,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DocScanner/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
 				DEVELOPMENT_TEAM = JY83NY58JG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -361,7 +361,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		304E1AA02D6CA82B00862CED /* Build configuration list for PBXNativeTarget "DocScanner" */ = {
+		304E1AA02D6CA82B00862CED /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				304E1AA12D6CA82B00862CED /* Debug */,
