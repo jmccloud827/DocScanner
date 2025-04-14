@@ -50,6 +50,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		302494152DAD922300101911 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				304E1A972D6CA82A00862CED /* DocumentList.swift */,
+				304E1AAF2D6CB89500862CED /* DocumentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		302494162DAD922E00101911 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */,
+				304E1AA72D6CAA1A00862CED /* PreviewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		302494172DAD923300101911 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				304E1AAD2D6CB1DA00862CED /* Document.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		304E1A892D6CA82A00862CED = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				304E1A952D6CA82A00862CED /* App.swift */,
-				304E1A972D6CA82A00862CED /* DocumentList.swift */,
-				304E1AAF2D6CB89500862CED /* DocumentView.swift */,
-				304E1AA92D6CAA4100862CED /* DocumentScannerView.swift */,
-				304E1AA72D6CAA1A00862CED /* PreviewController.swift */,
-				304E1AAD2D6CB1DA00862CED /* Document.swift */,
+				302494152DAD922300101911 /* Screens */,
+				302494162DAD922E00101911 /* Views */,
+				302494172DAD923300101911 /* Models */,
 				30415BFF2D93423C006A2135 /* sample.pdf */,
 				304E1A992D6CA82B00862CED /* Assets.xcassets */,
 				3024940F2DAD912A00101911 /* Info.plist */,
