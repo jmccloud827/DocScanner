@@ -8,16 +8,16 @@ import SwiftUI
 /// allowing it to be used within collections, uniquely identified, and transferred between applications.
 @Model class Document: Hashable, Identifiable, Transferable {
     /// A unique identifier for the document.
-    @Attribute(.unique) var id = UUID()
+    var id = UUID()
     
     /// The name of the document.
-    var name: String
+    var name: String = ""
     
     /// The date when the document was created.
-    var dateCreated: Date
+    var dateCreated: Date = Date.now
     
     /// The raw data of the document.
-    var document: Data
+    var document: Data = Data()
     
     /// Initializes a new instance of `Document` with the provided name, creation date, and document data.
     ///
