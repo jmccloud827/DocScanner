@@ -142,11 +142,11 @@ private struct DocumentLink: View {
     
     @ViewBuilder private var contextMenuButtons: some View {
         if let imageRepresentation = document.pdfDocument?.imageRepresentation {
-            ShareLink(item: document,
+            ShareLink(item: document.transferableRepresentation,
                       preview: SharePreview(document.name,
                                             image: Image(uiImage: imageRepresentation)))
         } else {
-            ShareLink(item: document,
+            ShareLink(item: document.transferableRepresentation,
                       preview: SharePreview(document.name))
         }
     

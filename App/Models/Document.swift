@@ -4,9 +4,9 @@ import SwiftUI
 
 /// A model class representing a document with associated metadata.
 ///
-/// The `Document` class conforms to `Hashable`, `Identifiable`, and `Transferable` protocols,
+/// The `Document` class conforms to `Hashable` and `Identifiable` protocols,
 /// allowing it to be used within collections, uniquely identified, and transferred between applications.
-@Model class Document: Hashable, Identifiable, Transferable {
+@Model class Document: Hashable, Identifiable {
     /// A unique identifier for the document.
     var id = UUID()
     
@@ -53,23 +53,28 @@ import SwiftUI
         return PDFDocument(data: document)
     }
     
-    /// A static property defining the transfer representation for the `Document` class.
-    ///
-    /// This representation allows documents to be imported and exported as PDF files.
-    public static var transferRepresentation: some TransferRepresentation {
-        DataRepresentation(contentType: .pdf) { document in
-            document.document
-        } importing: { data in
-            Document(name: "Imported Document \(UUID().uuidString)", dateCreated: Date.now, data: data)
-        }
-        .suggestedFileName { document in
-            document.name
-        }
-        DataRepresentation(exportedContentType: .pdf) { document in
-            document.document
-        }
-        .suggestedFileName { document in
-            document.name
+    /// A computed property that returns a `TransferableDocument` representation of the document data.
+    var transferableRepresentation: TransferableDocument {
+        .init(name: name, document: document)
+    }
+    
+    /// A model class representing a transferable document with associated metadata.
+    nonisolated struct TransferableDocument: Transferable {
+        /// The name of the document.
+        let name: String
+        /// The raw data of the document.
+        let document: Data
+        
+        /// A static property defining the transfer representation for the `Document` class.
+        ///
+        /// This representation allows documents to be imported and exported as PDF files.
+        public static var transferRepresentation: some TransferRepresentation {
+            DataRepresentation(exportedContentType: .pdf) { document in
+                document.document
+            }
+            .suggestedFileName { document in
+                document.name
+            }
         }
     }
 }

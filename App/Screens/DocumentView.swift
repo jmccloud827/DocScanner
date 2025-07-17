@@ -28,11 +28,11 @@ struct DocumentView: View {
     
     @ViewBuilder private func shareButton(pdfDocument: PDFDocument) -> some View {
         if let imageRepresentation = pdfDocument.imageRepresentation {
-            ShareLink(item: document,
+            ShareLink(item: document.transferableRepresentation,
                       preview: SharePreview(document.name,
                                             image: Image(uiImage: imageRepresentation)))
         } else {
-            ShareLink(item: document,
+            ShareLink(item: document.transferableRepresentation,
                       preview: SharePreview(document.name))
         }
     }
