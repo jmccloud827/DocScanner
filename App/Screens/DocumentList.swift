@@ -29,7 +29,7 @@ struct DocumentList: View {
                     }
                 }
                 .padding()
-                .sheet(item: $selected) { document in
+                .fullScreenCover(item: $selected) { document in
                     NavigationStack {
                         DocumentView(document: document)
                     }

@@ -31,14 +31,6 @@
 		304E1AAF2D6CB89500862CED /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		304E1AA52D6CA84200862CED /* Preview Content */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		304E1A8F2D6CA82A00862CED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -103,7 +95,6 @@
 				304E1A992D6CA82B00862CED /* Assets.xcassets */,
 				3024940F2DAD912A00101911 /* Info.plist */,
 				3024940E2DAD911B00101911 /* App.entitlements */,
-				304E1AA52D6CA84200862CED /* Preview Content */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -122,9 +113,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				304E1AA52D6CA84200862CED /* Preview Content */,
 			);
 			name = App;
 			packageProductDependencies = (
@@ -333,7 +321,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -366,7 +354,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
