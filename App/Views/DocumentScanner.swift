@@ -4,9 +4,9 @@ import VisionKit
 
 /// A SwiftUI view that provides a document scanning interface using `VNDocumentCameraViewController`.
 ///
-/// The `DocumentScannerView` allows users to scan documents and convert them into a `PDFDocument`.
+/// The `DocumentScanner` allows users to scan documents and convert them into a `PDFDocument`.
 /// Upon completion of the scanning process, it returns the scanned PDF document via a completion handler.
-public struct DocumentScannerView: UIViewControllerRepresentable {
+public struct DocumentScanner: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
     
     /// A closure that is called upon the completion of the document scanning process.
@@ -35,15 +35,15 @@ public struct DocumentScannerView: UIViewControllerRepresentable {
     
     /// A coordinator class that conforms to `VNDocumentCameraViewControllerDelegate`.
     ///
-    /// The `Coordinator` manages the interactions between the `DocumentScannerView` and the
+    /// The `Coordinator` manages the interactions between the `DocumentScanner` and the
     /// `VNDocumentCameraViewController`, handling delegate callbacks for document scanning.
     public class Coordinator: NSObject, @preconcurrency VNDocumentCameraViewControllerDelegate {
-        var parent: DocumentScannerView
+        var parent: DocumentScanner
         
         /// Initializes a new instance of `Coordinator` with the specified parent `DocumentScannerView`.
         ///
-        /// - Parameter parent: The parent `DocumentScannerView` instance.
-        init(_ parent: DocumentScannerView) {
+        /// - Parameter parent: The parent `DocumentScanner` instance.
+        init(_ parent: DocumentScanner) {
             self.parent = parent
         }
         

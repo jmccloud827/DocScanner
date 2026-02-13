@@ -4,9 +4,9 @@ import SwiftUI
 
 /// A SwiftUI view that displays a PDF document.
 ///
-/// The `DocumentView` struct shows a PDF document, allowing users to view its content
+/// The `DocumentPreview` struct shows a PDF document, allowing users to view its content
 /// and share it with others. If the PDF document cannot be loaded, an error message is displayed.
-struct DocumentView: View {
+struct DocumentPreview: View {
     @Environment(\.modelContext) private var modelContext
     let document: Document
     
